@@ -12,7 +12,7 @@ export default function ShortenForm() {
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const API_BASE = "http://127.0.0.1:8000";
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const predefinedOptions = {
     "10min": "10 Minutes",
@@ -40,7 +40,7 @@ export default function ShortenForm() {
         delete payload.expiration;
       }
 
-      const res = await axios.post(`${API_BASE}/shorten`, payload);
+      const res = await axios.post(`${baseURL}/shorten`, payload);
       setResult(res.data);
     } catch (err) {
       console.error(err);
